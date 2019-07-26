@@ -183,34 +183,19 @@ def player_stats(players_name)
 end
 
 def big_shoe_rebounds
-  names = []
-  shoe_sizes = []
-
-  game_hash.each do |team, chars|
-    game_hash[team][:players].each do |name,stats|
-      names.push(name)
-      shoe_sizes.push(stats[:shoe])
-    end
-  end
-
-  largest = -1
-  shoe_sizes.each do |x|
-    if x > largest
-      largest = x
-    end
-  end
-  
-  player_with_largest = names[shoe_sizes.index(largest)]
-  
-  game_hash.each do |team, chars|
-    game_hash[team][:players].each do |name, stats|
-     if player_with_largest == name
-       return stats[:rebounds]
-  
+   shoe_size = 0
+   rebound = 0
+   game_hash.each do |location, team_data|
+      team_data[:players].each do |player_name, value|
+         if value[:shoe] > shoe_size
+            shoe_size = value[:shoe]
+            rebound = value[:rebounds]
+         end
       end
-    end
-  end
+   end
+   rebound
 end
+
 
 
 
