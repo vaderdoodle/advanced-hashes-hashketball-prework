@@ -231,13 +231,13 @@ end
 def player_with_longest_name
   length = 0
   name = ""
-  game_hash.each{|location, data|
-    data[:players].each{|names, ele|
+  game_hash.each do |location, data|
+    data[:players].each do |names, other|
       if names.length > length
         length = names.length
         name = names
       end
-    }
-  }
+    end
+  end
   return name
 end
