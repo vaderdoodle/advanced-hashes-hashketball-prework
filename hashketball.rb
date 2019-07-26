@@ -242,7 +242,7 @@ def player_with_longest_name
   return name
 end
 
-long_name_steals_a_ton?
+def long_name_steals_a_ton?
   steal = 0
   name = ""
   game_hash.each{|location, data|
