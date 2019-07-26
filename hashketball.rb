@@ -229,15 +229,13 @@ def winning_team
 end
 
 def player_with_longest_name
-  longest = 0
-  player_name = nil
-  game_hash.each do |location, team_data|
-    team_data[:players].each do |name, value|
-      if name.length > longest
-        name.length = longest
-        player_name = name
-      end
+  longest = ''
+  longest_length = 0
+  game_hash.each do |home_away, keys|
+    keys[:players].each do |player|
+      name_length = player[:player_name].length
+      longest, longest_length = player[:player_name], name_length if name_length > longest_length
     end
   end
-  player_name
+  return longest
 end
